@@ -1,0 +1,22 @@
+aws_profile: testing 
+aws_region: eu-west-1
+logdir: /opt/reset-o-nator/logs
+user_agent: Splunk Reset-O-Nator v0.2
+queue_name: compromised_accounts
+
+
+site2:
+  regex: ^SITE2
+  api_host: http://localhost:8081
+  baseurl: /reset_password
+  query: op=ResetPassword&input=["{}", {}]&mode_in=json&mode_out=json
+
+site1:
+  regex: ^(SITE1|SITE3|STE4)$
+  api_host: https://api.local:8443
+  accounts_baseurl: /accounts
+  accounts_query: email={}
+  passwords_baseurl: /passwords/
+  api_cert: ./certs/client_cert.crt
+  api_key: ./certs/client.key
+
